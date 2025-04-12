@@ -41,19 +41,20 @@
   :type 'string
   :group 'c-formatter-42)
 
-(defun c-formatter-42-install ()
-  "Ensure that c_formatter_42 is installed."
-  (unless (executable-find c-formatter-42-exec)
-    (message "Installing c_formatter_42...")
-    (shell-command "pip3 install --user c-formatter-42")))
+;; TODO: maybe implement later
+; (defun c-formatter-42-install ()
+;  "Ensure that c_formatter_42 is installed."
+;  (unless (executable-find c-formatter-42-exec)
+;    (message "Installing c_formatter_42...")
+;    (shell-command "pip3 install --user c-formatter-42")))
 
 (defun c-formatter-42 ()
   "Format the current buffer using the c_formatter_42 tool."
   (interactive)
   (let ((pos (point))
         (inhibit-read-only t)
-        (deactivate-mark nil)  ;; Prevent selection
-        (mark-active nil))     ;; Tell Emacs there's no active region
+        (deactivate-mark nil)
+        (mark-active nil))
     (save-excursion
       (let ((equalprg-temp (executable-find "equalprg")))
         (setq-local equalprg c-formatter-42-exec)
