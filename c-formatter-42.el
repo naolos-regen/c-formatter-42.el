@@ -119,10 +119,6 @@
 ;;;###autoload
 (c-formatter-42-enable-equalprg)
 
-(with-eval-after-load 'lsp-mode
-  (setq lsp-enable-on-type-formatting nil)
-  (setq lsp-enable-indentation nil))
-
 
 (provide 'c-formatter-42)
 
