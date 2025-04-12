@@ -3,7 +3,13 @@
 I'm (currently) not a 42 student, but I love the C style.
 
 It's not in the Elpa, Melpa or any other package manager, because it's just 1 file
-all credits to cacharlie's c_formatter_42 for vim https://github.com/cacharle/c_formatter_42.vim
+all credits to cacharlie's c_formatter_42 for vim 
+https://github.com/cacharle/c_formatter_42.vim
+(I just translated it to emacs lisp)
+The c_formatter_42 itself 
+https://github.com/dawnbeen/c_formatter_42
+& 42school's norminette
+https://github.com/42School/norminette
 
 
 ** How to use?
