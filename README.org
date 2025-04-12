@@ -13,8 +13,27 @@ If the installation via pip3 does not work, set up a venv using pipx like this o
 
   >$ brew   install pipx            # macOS
 
-  C:/ python3 -m pip install --user pipx # other
+C:/ python3 -m pip install --user pipx # other
 #+END_SRC
+
+Ensure your path is set up properly ($HOME/.local/bin is default)
+#+BEGIN_SRC bash
+  >$ pipx ensurepath
+  >$ pipx install c_formatter_42
+  >$ pipx install norminette     # <- additionally
+#+END_SRC
+
+To use it, you need to make sure that $PATH is set up properly.
+#+BEGIN_SRC bash
+  >$ echo 'export PATH=$HOME/.local/bin:$PATH' >> ~/.bashrc
+  # or ~/.zshrc
+
+  # for fish (not sure)
+  >$ fish_add_path path ...
+  >$ fish_add_path [(-g | --global) | (-U | --universal) | (-P | --path)] [(-m | --move)] [(-a | --append) | (-p | --prepend)] [(-v | --verbose) | (-n | --dry-run)] PATHS ...
+
+#+END_SRC
+Afterwards you need to source .zshrc or .bashrc
 
 
 *** 2.Setting up the c-formatter-42.el file
@@ -22,4 +41,9 @@ If the installation via pip3 does not work, set up a venv using pipx like this o
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'load-path "$PATH_TO_FILE")
   (require 'c-formatter-42)
+#+END_SRC
+
+* DEFAULT_SETTINGS
+#+BEGIN_SRC emacs-lisp
+(
 #+END_SRC
