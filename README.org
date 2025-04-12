@@ -1,0 +1,25 @@
+* c-formatter-42.el
+It's not in the Elpa, Melpa or any other package manager, because it's just 1 file
+** How to use?
+*** 1. Install c_formatter_42
+
+[[https://github.com/dawnbeen/c_formatter_42][c_formatter_42]] <- here is the link
+
+If the installation via pip3 does not work, set up a venv using pipx like this one:
+#+BEGIN_SRC
+  ># apt    install pipx            # debian
+  ># dnf    install pipx            # fedora
+  ># pacman -S      python-pipx     # arch
+
+  >$ brew   install pipx            # macOS
+
+  C:/ python3 -m pip install --user pipx # other
+#+END_SRC
+
+
+*** 2.Setting up the c-formatter-42.el file
+
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'load-path "$PATH_TO_FILE")
+  (require 'c-formatter-42)
+#+END_SRC
