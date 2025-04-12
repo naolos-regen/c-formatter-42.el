@@ -39,11 +39,16 @@ Afterwards you need to source .zshrc or .bashrc
 *** 2.Setting up the c-formatter-42.el file
 
 #+BEGIN_SRC emacs-lisp
+  ; loading path to .el file
   (add-to-list 'load-path "$PATH_TO_FILE")
+  ; make sure it's loaded within your emacs config
   (require 'c-formatter-42)
-#+END_SRC
-
-* DEFAULT_SETTINGS
-#+BEGIN_SRC emacs-lisp
-(
+  ; all-possible setq's
+  (setq c-formatter-42-exec "$PATH_TO_C_FORMATTER_42") ; default c_formatter_42
+  (setq c-formatter-42-set-equalprg   1)               ; default 0
+  (setq c-formatter-42-format-on-save 1)               ; default 0
+  (setq norminette-command  "$PATH_TO_NORMINETTE")     ; default norminette
+  ; keybinding setq's
+  (setq norminette-keybinding     "C-c C-n")           ; default <f4>
+  (setq c-formatter-42-keybinding "C-c C-f")           ; default <f2>
 #+END_SRC
