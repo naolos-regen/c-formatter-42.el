@@ -11,7 +11,6 @@ https://github.com/dawnbeen/c_formatter_42
 & 42school's norminette
 https://github.com/42School/norminette
 
-It will show :
 #+CAPTION: This is an image from my emacs configs
 #+NAME: Shish
 [[M-x_c-formatter-42.png]]
@@ -68,6 +67,7 @@ Afterwards you need to source .zshrc or .bashrc
   (setq norminette-keybinding     "C-c C-n")           ; default <f4>
   (setq c-formatter-42-keybinding "C-c C-f")           ; default <f2>
 #+END_SRC
+or use "M-x customize-group RET c-formatter-42 RET"
 
 *** 3. Make sure your $PATH is setup correctly within emacs
 You can either use exec-path-from-shell package for GUI emacs (I prefer this)
