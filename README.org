@@ -3,10 +3,10 @@
 I'm (currently) not a 42 student, but I love the C style.
 
 It's not in the Elpa, Melpa or any other package manager, because it's just 1 file
-all credits to cacharlie's c_formatter_42 for vim 
+all credits to cacharlie's c_formatter_42 for vim
 https://github.com/cacharle/c_formatter_42.vim
 (I just translated it to emacs lisp)
-The c_formatter_42 itself 
+The c_formatter_42 itself
 https://github.com/dawnbeen/c_formatter_42
 & 42school's norminette
 https://github.com/42School/norminette
@@ -64,3 +64,51 @@ Afterwards you need to source .zshrc or .bashrc
   (setq norminette-keybinding     "C-c C-n")           ; default <f4>
   (setq c-formatter-42-keybinding "C-c C-f")           ; default <f2>
 #+END_SRC
+
+*** 3. Make sure your lsp/c-mode is not messing up with you
+
+Whenever you use ccls package with ccls it will use it's formatter for you, also default c-mode engages GNU-style.
+
+#+BEGIN_SRC emacs-lisp
+  ;; Lets say this is your conf
+  (use-package ccls
+      :ensure t
+      :hook ((c-mode c++-mode objc-mode) . lsp)
+      :config
+      (setq ccls-executable "ccls"))
+  ;; What you want to do in
+  (use-package lsp-mode
+    :commands (lsp lsp-deferred)
+    :init
+
+    ;; disable ccls formatting
+    (setq lsp-clients-ccls-initialization-options
+  	 '(:index (:comments 2)
+  		   :completion (:disabledLabel t)
+  		   :clang      (:extraAtgs     ["-Wall" "-Wextra" "-Werror"])))
+    (setq lsp-keymap-prefix "C-c l")
+    :hook (
+  	  (c-mode    . lsp)
+  	  (c++-mode  . lsp)
+  	  )
+    :config
+    (lsp-enable-which-key-integration t))
+
+  (setq lsp-enable-on-type-formatting   nil)
+  (setq lsp-enable-indentation          nil)
+  (setq lsp-enable-formatting 		nil)
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (defun disable-c-indentation ()
+    (setq-local indent-tabs-mode t)
+    (setq-local tab-width 8)
+    (setq-local c-basic-offset 8)
+    (setq-local electric-indent-inhibit t)
+    (setq-local indent-line-function 'indent-relative))
+
+  (add-hook 'c-mode-hook   'disable-c-indentation)
+  (add-hook 'c++-mode-hook 'disable-c-indentation)
+#+END_SRC
+
+Other mode's would be simpc-mode made by Tscoding [[https://github.com/rexim/simpc-mode][simpc-mode link]]
