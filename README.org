@@ -3,12 +3,12 @@
 I’m (currently) not a 42 student, but I love the C style.
 
 It's not in ELPA, MELPA, or any other package manager because it's just a single file. All credits to cacharlie's `c_formatter_42` for Vim:
-[https://github.com/cacharle/c_formatter_42.vim](https://github.com/cacharle/c_formatter_42.vim)
+[[https://github.com/cacharle/c_formatter_42.vim][cacharle/c_formatter_42.vim]]
 (I just translated it to Emacs Lisp)
 The `c_formatter_42` itself:
-[https://github.com/dawnbeen/c_formatter_42](https://github.com/dawnbeen/c_formatter_42)
+[[https://github.com/dawnbeen/c_formatter_42][dawnbeen/c_formatter_42]]
 & 42school's Norminette:
-[https://github.com/42School/norminette](https://github.com/42School/norminette)
+[[https://github.com/42School/norminette][42School/norminette]]
 
 #+CAPTION: This is an image from my Emacs configs
 #+NAME: Shish
@@ -18,8 +18,8 @@ The `c_formatter_42` itself:
 
 *** 1. Install c_formatter_42 / Norminette
 
-[c_formatter_42](https://github.com/dawnbeen/c_formatter_42) <- here is the link
-[norminette](https://github.com/42School/norminette) <- here is the link
+[[https://github.com/dawnbeen/c_formatter_42][c_formatter_42]] <- here is the link
+[[https://github.com/42School/norminette][norminette]]     <- here is the link
 
 If installation via `pip3` does not work, set up a virtual environment using `pipx` like this:
 
@@ -130,4 +130,4 @@ Add a little spice:
 #+END_SRC
 
 For other modes, you can use `simpc-mode` by Tscoding:
-[simpc-mode link](https://github.com/rexim/simpc-mode)
+[[https://github.com/rexim/simpc-mode][simpc-mode link]]
