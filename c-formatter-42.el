@@ -20,11 +20,6 @@
   :type 'string
   :group 'c-formatter-42)
 
-(defcustom c-formatter-42-set-equalprg 0
-  "If non-zero, sets the 'equalprg' variable to the C formatter executable."
-  :type 'integer
-  :group 'c-formatter-42)
-
 (defcustom c-formatter-42-format-on-save 0
   "If non-zero, formats C files on save."
   :type 'integer
@@ -64,11 +59,9 @@
         (deactivate-mark nil)
         (mark-active nil))
     (save-excursion
-      (let ((equalprg-temp (executable-find "equalprg")))
-        (setq-local equalprg c-formatter-42-exec)
-        (shell-command-on-region (point-min) (point-max) c-formatter-42-exec nil t)
-        (setq-local equalprg equalprg-temp)))
+      (shell-command-on-region (point-min) (point-max) c-formatter-42-exec nil t))
     (goto-char pos)))
+
 
 
 ;;; Norminette on the current buffer
