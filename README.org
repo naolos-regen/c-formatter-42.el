@@ -11,6 +11,10 @@ https://github.com/dawnbeen/c_formatter_42
 & 42school's norminette
 https://github.com/42School/norminette
 
+It will show :
+#+CAPTION: This is an image from my emacs configs
+#+NAME: Shish
+[[M-x_c-formatter-42.png]]
 
 ** How to use?
 *** 1. Install c_formatter_42 / norminette
