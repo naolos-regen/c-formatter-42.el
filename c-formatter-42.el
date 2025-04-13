@@ -114,14 +114,6 @@
 ;;;###autoload
 (add-hook 'c++-mode-hook 'c-formatter-42-mode)
 
-(defun c-formatter-42-enable-equalprg ()
-  "Enable equalprg with c_formatter_42 if configured."
-  (when c-formatter-42-set-equalprg
-    (setq-local equalprg c-formatter-42-exec)))
-
-;;;###autoload
-(c-formatter-42-enable-equalprg)
-
 ;;; So that you can require all that mess without needing to Copy paste it to init.el :c
 (provide 'c-formatter-42)
 
