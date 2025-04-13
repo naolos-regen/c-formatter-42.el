@@ -4,7 +4,7 @@
 ;; This package integrates the c_formatter_42 tool into Emacs for formatting C code.
 ;; It also allows running Norminette on C files for style checking.
 
-;;; This plugin uses norminette software
+;;; This package uses norminette software
 ;; Copyright (c) 2020 42 Association
 ;; See the full license in NORMINETTE_LICENSE file.
 
