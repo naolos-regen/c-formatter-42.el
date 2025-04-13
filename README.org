@@ -58,7 +58,6 @@ Afterwards you need to source .zshrc or .bashrc
   (require 'c-formatter-42)
   ; all-possible setq's
   (setq c-formatter-42-exec "$PATH_TO_C_FORMATTER_42") ; default c_formatter_42
-  (setq c-formatter-42-set-equalprg   1)               ; default 0
   (setq c-formatter-42-format-on-save 1)               ; default 0
   (setq norminette-command  "$PATH_TO_NORMINETTE")     ; default norminette
   ; keybinding setq's
