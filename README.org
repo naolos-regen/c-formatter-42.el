@@ -57,7 +57,7 @@ Afterwards you need to source .zshrc or .bashrc
   ; make sure it's loaded within your emacs config
   (require 'c-formatter-42)
   ; all-possible setq's
-  (setq c-formatter-42-exec "$PATH_TO_C_FORMATTER_42") ; default c_formatter_42
+  (setq c-formatter-42-exec "$PATH_TO_C_FORMATTER_42") ; default c_formatter_42 (if $PATH not set)
   (setq c-formatter-42-format-on-save 1)               ; default 0
   (setq norminette-command  "$PATH_TO_NORMINETTE")     ; default norminette
   ; keybinding setq's
@@ -94,8 +94,6 @@ Whenever you use ccls package with ccls it will use it's formatter for you, also
   (use-package lsp-mode
     :commands (lsp lsp-deferred)
     :init
-
-    ;; disable ccls formatting
     (setq lsp-clients-ccls-initialization-options
   	 '(:index (:comments 2)
   		   :completion (:disabledLabel t)
