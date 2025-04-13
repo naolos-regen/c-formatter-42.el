@@ -66,7 +66,21 @@ Afterwards you need to source .zshrc or .bashrc
   (setq c-formatter-42-keybinding "C-c C-f")           ; default <f2>
 #+END_SRC
 
-*** 3. Make sure your lsp/c-mode is not messing up with you
+*** 3. Make sure your $PATH is setup correctly within emacs
+You can either use exec-path-from-shell package for GUI emacs (I prefer this)
+#+BEGIN_SRC emacs-lisp
+  (use-package exec-path-from-shell
+    :if (display-graphic-p)
+    :config
+    (exec-path-from-shell-initialize))
+#+END_SRC
+Or append it manually within emacs configs
+#+BEGIN_SRC emacs-lisp
+  (setenv "PATH" (concat (getenv "PATH") ":$HOME/$PATH_TO_EXECS"))
+  (add-to-list 'exec-path "$HOME/$PATH_TO_EXECS")
+#+END_SRC
+To check use M-x executable-find "c_formatter_42"
+*** 4. Make sure your lsp/c-mode is not messing up with you
 
 Whenever you use ccls package with ccls it will use it's formatter for you, also default c-mode engages GNU-style.
 
@@ -99,6 +113,8 @@ Whenever you use ccls package with ccls it will use it's formatter for you, also
   (setq lsp-enable-indentation          nil)
   (setq lsp-enable-formatting 		nil)
 #+END_SRC
+
+add little spice
 
 #+BEGIN_SRC emacs-lisp
   (defun disable-c-indentation ()
