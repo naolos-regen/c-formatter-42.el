@@ -101,7 +101,7 @@ Whenever you use ccls package with ccls it will use it's formatter for you, also
     (setq lsp-clients-ccls-initialization-options
   	 '(:index (:comments 2)
   		   :completion (:disabledLabel t)
-  		   :clang      (:extraAtgs     ["-Wall" "-Wextra" "-Werror"])))
+  		   :clang      (:extraArgs     ["-Wall" "-Wextra" "-Werror"])))
     (setq lsp-keymap-prefix "C-c l")
     :hook (
   	  (c-mode    . lsp)
