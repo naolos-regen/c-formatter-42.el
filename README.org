@@ -75,8 +75,8 @@ You can either use exec-path-from-shell package for GUI emacs (I prefer this)
 #+END_SRC
 Or append it manually within emacs configs
 #+BEGIN_SRC emacs-lisp
-  (setenv "PATH" (concat (getenv "PATH") ":$HOME/$PATH_TO_EXECS"))
-  (add-to-list 'exec-path "$HOME/$PATH_TO_EXECS")
+  (setenv "PATH" (concat (getenv "PATH") ":" (expand-file-name "$HOME/$PATH_TO_EXECS")))
+  (add-to-list 'exec-path (expand-file-name "$HOME/$PATH_TO_EXECS"))
 #+END_SRC
 To check use M-x executable-find "c_formatter_42"
 *** 4. Make sure your lsp/c-mode is not messing up with you
