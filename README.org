@@ -13,9 +13,10 @@ https://github.com/42School/norminette
 
 
 ** How to use?
-*** 1. Install c_formatter_42
+*** 1. Install c_formatter_42 / norminette
 
 [[https://github.com/dawnbeen/c_formatter_42][c_formatter_42]] <- here is the link
+[[https://github.com/42School/norminette][norminette]]     <- here is the link
 
 If the installation via pip3 does not work, set up a venv using pipx like this one:
 #+BEGIN_SRC
