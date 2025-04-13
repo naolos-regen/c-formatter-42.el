@@ -1,121 +1,121 @@
 * c-formatter-42.el
 
-I'm (currently) not a 42 student, but I love the C style.
+I’m (currently) not a 42 student, but I love the C style.
 
-It's not in the Elpa, Melpa or any other package manager, because it's just 1 file
-all credits to cacharlie's c_formatter_42 for vim
-https://github.com/cacharle/c_formatter_42.vim
-(I just translated it to emacs lisp)
-The c_formatter_42 itself
-https://github.com/dawnbeen/c_formatter_42
-& 42school's norminette
-https://github.com/42School/norminette
+It's not in ELPA, MELPA, or any other package manager because it's just a single file. All credits to cacharlie's `c_formatter_42` for Vim:
+[https://github.com/cacharle/c_formatter_42.vim](https://github.com/cacharle/c_formatter_42.vim)
+(I just translated it to Emacs Lisp)
+The `c_formatter_42` itself:
+[https://github.com/dawnbeen/c_formatter_42](https://github.com/dawnbeen/c_formatter_42)
+& 42school's Norminette:
+[https://github.com/42School/norminette](https://github.com/42School/norminette)
 
-#+CAPTION: This is an image from my emacs configs
+#+CAPTION: This is an image from my Emacs configs
 #+NAME: Shish
 [[M-x_c-formatter-42.png]]
 
 ** How to use?
-*** 1. Install c_formatter_42 / norminette
 
-[[https://github.com/dawnbeen/c_formatter_42][c_formatter_42]] <- here is the link
-[[https://github.com/42School/norminette][norminette]]     <- here is the link
+*** 1. Install c_formatter_42 / Norminette
 
-If the installation via pip3 does not work, set up a venv using pipx like this one:
+[c_formatter_42](https://github.com/dawnbeen/c_formatter_42) <- here is the link
+[norminette](https://github.com/42School/norminette) <- here is the link
+
+If installation via `pip3` does not work, set up a virtual environment using `pipx` like this:
+
 #+BEGIN_SRC
-  ># apt    install pipx            # debian
-  ># dnf    install pipx            # fedora
-  ># pacman -S      python-pipx     # arch
+  ># apt install pipx            # Debian
+  ># dnf install pipx            # Fedora
+  ># pacman -S python-pipx       # Arch
 
-  >$ brew   install pipx            # macOS
+  >$ brew install pipx           # macOS
 
-C:/ python3 -m pip install --user pipx # other
+C:/ python3 -m pip install --user pipx # Other
 #+END_SRC
 
-Ensure your path is set up properly ($HOME/.local/bin is default)
+Ensure your path is set up properly (`$HOME/.local/bin` is the default):
 #+BEGIN_SRC bash
   >$ pipx ensurepath
   >$ pipx install c_formatter_42
   >$ pipx install norminette     # <- additionally
 #+END_SRC
 
-To use it, you need to make sure that $PATH is set up properly.
+To use it, make sure that `$PATH` is set up correctly:
 #+BEGIN_SRC bash
   >$ echo 'export PATH=$HOME/.local/bin:$PATH' >> ~/.bashrc
   # or ~/.zshrc
 
-  # for fish (not sure)
+  # For fish (not sure)
   >$ fish_add_path path ...
   >$ fish_add_path [(-g | --global) | (-U | --universal) | (-P | --path)] [(-m | --move)] [(-a | --append) | (-p | --prepend)] [(-v | --verbose) | (-n | --dry-run)] PATHS ...
-
 #+END_SRC
-Afterwards you need to source .zshrc or .bashrc
 
+Afterwards, you need to source `.zshrc` or `.bashrc`.
 
-*** 2.Setting up the c-formatter-42.el file
+*** 2. Setting up the c-formatter-42.el file
 
 #+BEGIN_SRC emacs-lisp
-  ; loading path to .el file
+  ; Loading path to .el file
   (add-to-list 'load-path "$PATH_TO_FILE")
-  ; make sure it's loaded within your emacs config
+  ; Make sure it's loaded within your Emacs config
   (require 'c-formatter-42)
-  ; all-possible setq's
-  (setq c-formatter-42-exec "$PATH_TO_C_FORMATTER_42") ; default c_formatter_42 (if $PATH not set)
-  (setq c-formatter-42-format-on-save 1)               ; default 0
-  (setq norminette-command  "$PATH_TO_NORMINETTE")     ; default norminette
-  ; keybinding setq's
-  (setq norminette-keybinding     "C-c C-n")           ; default <f4>
-  (setq c-formatter-42-keybinding "C-c C-f")           ; default <f2>
+  ; All possible `setq` configurations
+  (setq c-formatter-42-exec "$PATH_TO_C_FORMATTER_42") ; Default: c_formatter_42 (if $PATH is not set)
+  (setq c-formatter-42-format-on-save 1)               ; Default: 0
+  (setq norminette-command "$PATH_TO_NORMINETTE")      ; Default: norminette     (if $PATH is not set)
+  ; Keybinding configurations
+  (setq norminette-keybinding "C-c C-n")               ; Default: <f4>
+  (setq c-formatter-42-keybinding "C-c C-f")           ; Default: <f2>
 #+END_SRC
-or use "M-x customize-group RET c-formatter-42 RET"
+Or use `M-x customize-group RET c-formatter-42 RET` instead of setq.
 
-*** 3. Make sure your $PATH is setup correctly within emacs
-You can either use exec-path-from-shell package for GUI emacs (I prefer this)
+*** 3. Make sure your $PATH is set up correctly within Emacs
+
+You can either use the `exec-path-from-shell` package for GUI Emacs (I prefer this):
 #+BEGIN_SRC emacs-lisp
   (use-package exec-path-from-shell
     :if (display-graphic-p)
     :config
     (exec-path-from-shell-initialize))
 #+END_SRC
-Or append it manually within emacs configs
+Or append it manually within your Emacs config:
 #+BEGIN_SRC emacs-lisp
   (setenv "PATH" (concat (getenv "PATH") ":" (expand-file-name "$HOME/$PATH_TO_EXECS")))
   (add-to-list 'exec-path (expand-file-name "$HOME/$PATH_TO_EXECS"))
 #+END_SRC
-To check use M-x executable-find "c_formatter_42"
-*** 4. Make sure your lsp/c-mode is not messing up with you
+To check, use `M-x executable-find "c_formatter_42"`.
 
-Whenever you use ccls package with ccls it will use it's formatter for you, also default c-mode engages GNU-style.
+*** 4. Make sure your ccls/LSP/c-mode is not interfering
+
+Whenever you use `ccls` with `lsp-mode`, it will use its own formatter. Additionally, the default `c-mode` uses the GNU-style formatter.
 
 #+BEGIN_SRC emacs-lisp
-  ;; Lets say this is your conf
+  ;; Assuming this is your configuration:
   (use-package ccls
-      :ensure t
-      :hook ((c-mode c++-mode objc-mode) . lsp)
-      :config
-      (setq ccls-executable "ccls"))
-  ;; What you want to do in
+    :ensure t
+    :hook ((c-mode c++-mode objc-mode) . lsp)
+    :config
+    (setq ccls-executable "ccls"))
+
   (use-package lsp-mode
     :commands (lsp lsp-deferred)
     :init
     (setq lsp-clients-ccls-initialization-options
-  	 '(:index (:comments 2)
-  		   :completion (:disabledLabel t)
-  		   :clang      (:extraArgs     ["-Wall" "-Wextra" "-Werror"])))
+          '(:index (:comments 2)
+                   :completion (:disabledLabel t)
+                   :clang (:extraArgs ["-Wall" "-Wextra" "-Werror"])))
     (setq lsp-keymap-prefix "C-c l")
-    :hook (
-  	  (c-mode    . lsp)
-  	  (c++-mode  . lsp)
-  	  )
+    :hook ((c-mode . lsp)
+           (c++-mode . lsp))
     :config
     (lsp-enable-which-key-integration t))
 
-  (setq lsp-enable-on-type-formatting   nil)
-  (setq lsp-enable-indentation          nil)
-  (setq lsp-enable-formatting 		nil)
+  (setq lsp-enable-on-type-formatting nil)
+  (setq lsp-enable-indentation nil)
+  (setq lsp-enable-formatting nil)
 #+END_SRC
 
-add little spice
+Add a little spice:
 
 #+BEGIN_SRC emacs-lisp
   (defun disable-c-indentation ()
@@ -125,8 +125,9 @@ add little spice
     (setq-local electric-indent-inhibit t)
     (setq-local indent-line-function 'indent-relative))
 
-  (add-hook 'c-mode-hook   'disable-c-indentation)
+  (add-hook 'c-mode-hook 'disable-c-indentation)
   (add-hook 'c++-mode-hook 'disable-c-indentation)
 #+END_SRC
 
-Other mode's would be simpc-mode made by Tscoding [[https://github.com/rexim/simpc-mode][simpc-mode link]]
+For other modes, you can use `simpc-mode` by Tscoding:
+[simpc-mode link](https://github.com/rexim/simpc-mode)
