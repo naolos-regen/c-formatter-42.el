@@ -85,7 +85,7 @@ Or append it manually within your Emacs config:
 #+END_SRC
 To check, use `M-x executable-find "c_formatter_42"`.
 
-*** 4. Make sure your ccls/LSP/c-mode is not interfering
+*** 4. Make sure your ccls/LSP/c-mode is not interfering (experimental)
 
 Whenever you use `ccls` with `lsp-mode`, it will use its own formatter. Additionally, the default `c-mode` uses the GNU-style formatter.
 
@@ -111,23 +111,25 @@ Whenever you use `ccls` with `lsp-mode`, it will use its own formatter. Addition
     (lsp-enable-which-key-integration t))
 
   (setq lsp-enable-on-type-formatting nil)
-  (setq lsp-enable-indentation nil)
+  (setq lsp-enable-indentation t)
   (setq lsp-enable-formatting nil)
 #+END_SRC
 
 Add a little spice:
 
 #+BEGIN_SRC emacs-lisp
-  (defun disable-c-indentation ()
-    (setq-local indent-tabs-mode t)
-    (setq-local tab-width 8)
-    (setq-local c-basic-offset 8)
-    (setq-local electric-indent-inhibit t)
-    (setq-local indent-line-function 'indent-relative))
-
-  (add-hook 'c-mode-hook 'disable-c-indentation)
-  (add-hook 'c++-mode-hook 'disable-c-indentation)
-#+END_SRC
+  ; Experimental tho
+  (defun disable-c-indent()
+    (setq-local indent-tabs-mode         t)
+    (setq-local tab-width                8)
+    (setq-local c-basic-offset           8)
+    (setq-local electric-indent-inhibit  nil)
+    (setq-local indent-line-function 'indent-relative)
+    (c-set-style "linux"))
+  (add-hook 'c-mode-hook   'disable-c-indent)
+  (add-hook 'c++-mode-hook 'disable-c-indent)
+  ; other styles would be "bsd" "k&r"
+  #+END_SRC
 
 For other modes, you can use `simpc-mode` by Tscoding:
 [[https://github.com/rexim/simpc-mode][simpc-mode link]]
