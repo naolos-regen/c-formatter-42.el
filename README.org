@@ -1,5 +1,9 @@
 * c-formatter-42.el
 
+* This project will need to be re-written completely using Clangd-formatter.
+* It will need to be set up per hand.
+* It only works as formatter for own typing without  any other formatters.
+
 I’m (currently) not a 42 student, but I love the C style.
 
 It's not in ELPA, MELPA, or any other package manager because it's just a single file. All credits to cacharlie's `c_formatter_42` for Vim:
